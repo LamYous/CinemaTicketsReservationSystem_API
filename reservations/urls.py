@@ -12,4 +12,7 @@ urlpatterns = [
 
     path('reservations/', views.reservation_list, name ="reservation-list"),
     path('reservations/<int:pk>/', views.reservation_details, name ="reservations-details"),
+
+    path('seats/', views.seat_list, name ="seat-list"),
+    path('seats/<int:pk>/', views.seat_details, name ="seat-details"),
 ]
