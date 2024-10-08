@@ -3,11 +3,13 @@ from .models import Hall, Movie, Showtime, Seat, Reservation
 from .serializers import HallSerializer, MovieSerializer, SeatSerializer, ShowtimeSerializer, ReservationSerializer
 from rest_framework.response import Response
 from rest_framework import status
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import IsAdminUser,IsAuthenticated
 
 
 # Theater Views
 
+permission_classes[IsAdminUser]
 @api_view(['GET','POST'])
 def hall_list(request):
     if request.method == 'GET':
@@ -23,6 +25,7 @@ def hall_list(request):
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+permission_classes[IsAdminUser]
 @api_view(['GET', 'PUT', 'DELETE'])
 def hall_details(request, pk):
     try:
@@ -48,6 +51,7 @@ def hall_details(request, pk):
     
 # Movie Views
 
+permission_classes[IsAdminUser]
 @api_view(['GET', 'POST'])
 def movie_list(request):
     if request.method == 'GET':
@@ -63,6 +67,7 @@ def movie_list(request):
         else:
             return Response(serializer.errors, status.HTTP_400_BAD_REQUEST)
 
+permission_classes[IsAdminUser]
 @api_view(['GET', 'PUT', 'DELETE'])
 def movie_details(request, pk):
     try:
@@ -88,6 +93,7 @@ def movie_details(request, pk):
     
 
 # Showtime Views
+permission_classes[IsAdminUser]
 @api_view(['GET','POST'])
 def showtim_list(request):
     if request.method == 'GET':
@@ -128,6 +134,7 @@ def showtime_details(request, pk):
     
 
 # Reservation Views
+permission_classes[IsAdminUser]
 @api_view(['GET', 'POST'])
 def reservation_list(request):
     if request.method == 'GET':
@@ -143,6 +150,7 @@ def reservation_list(request):
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         
+permission_classes[IsAdminUser]
 @api_view(['GET', 'PUT', 'DELETE'])
 def reservation_details(request, pk):
     try:
@@ -167,6 +175,7 @@ def reservation_details(request, pk):
         return Response(status=status.HTTP_204_NO_CONTENT)
     
 # Seat Views
+permission_classes[IsAdminUser]
 @api_view(['GET', 'POST'])
 def seat_list(request):
     if request.method == 'GET':
@@ -182,6 +191,7 @@ def seat_list(request):
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         
+permission_classes[IsAdminUser]
 @api_view(['GET', 'PUT', 'DELETE'])
 def seat_details(request, pk):
     try:
